@@ -1,0 +1,173 @@
+'use client';
+
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { FiArrowRight, FiMessageSquare, FiCalendar, FiBookOpen, FiUser } from 'react-icons/fi';
+import { HeroSection } from '@/components/hero-section';
+import { Section, SectionHeading } from '@/components/ui/section';
+import { FeatureCard } from '@/components/ui/feature-card';
+import { Header } from '@/components/header';
+import { Button } from '@/components/ui/button';
+import { Footer } from '@/components/footer';
+import { Step } from '@/components/ui/step';
+import { TestimonialCard } from '@/components/ui/testimonial-card';
+
+export default function Home() {
+  const router = useRouter();
+  
+  return (
+    <div className="min-h-screen flex flex-col">
+      <Header />
+      
+      {/* Hero Section */}
+      <HeroSection
+        title="Your Journey to Mental Wellness Begins Here"
+        description="MindEase offers AI-assisted mental health support, professionally-guided therapy, and personalized resources to help you thrive."
+        primaryButtonText="Get Started"
+        primaryButtonLink="/signup"
+        secondaryButtonText="Find a Therapist"
+        secondaryButtonLink="/therapists"
+        image={
+          <div className="relative h-64 md:h-96 w-full">
+            <Image
+              src="/images/hero-illustration.png"
+              alt="Mental wellness illustration"
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
+        }
+      />
+
+      {/* Features Section */}
+      <Section className="bg-muted/30">
+        <SectionHeading>How MindEase Supports You</SectionHeading>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <FeatureCard
+            title="AI Chat Support"
+            description="24/7 AI-powered chat assistant to provide immediate emotional support and coping strategies."
+            icon={<FiMessageSquare className="h-8 w-8" />}
+            link="/chat"
+            linkText="Try It Now"
+            glass
+          />
+          
+          <FeatureCard
+            title="Therapy Sessions"
+            description="Connect with licensed therapists for video or in-person sessions tailored to your needs."
+            icon={<FiCalendar className="h-8 w-8" />}
+            link="/therapists"
+            linkText="Book a Session"
+            glass
+          />
+          
+          <FeatureCard
+            title="Wellness Resources"
+            description="Access a library of articles, videos, and exercises curated by mental health professionals."
+            icon={<FiBookOpen className="h-8 w-8" />}
+            link="/resources"
+            linkText="Explore Resources"
+            glass
+          />
+        </div>
+      </Section>
+      
+      {/* How It Works */}
+      <Section>
+        <SectionHeading>Your Wellness Journey</SectionHeading>
+        
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <Step 
+            number={1} 
+            title="Sign Up"
+            description="Create your secure account and complete a brief wellness assessment."
+          />
+          
+          <Step 
+            number={2} 
+            title="Track Mood"
+            description="Log your emotions daily to identify patterns and triggers."
+          />
+          
+          <Step 
+            number={3} 
+            title="Connect"
+            description="Chat with our AI assistant or schedule sessions with therapists."
+          />
+          
+          <Step 
+            number={4} 
+            title="Grow"
+            description="Build skills with personalized resources and track your progress."
+          />
+        </div>
+        
+        <div className="mt-12 text-center">
+          <Button 
+            onClick={() => router.push('/signup')}
+            size="xl"
+          >
+            Start Your Journey
+          </Button>
+        </div>
+      </Section>
+      
+      {/* Testimonials */}
+      <Section className="bg-muted/30">
+        <SectionHeading>What Our Users Say</SectionHeading>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <TestimonialCard
+            name="Alex T."
+            text="The AI chat feature was there for me at 2 AM when I was having a panic attack. It guided me through breathing exercises and helped me calm down."
+            glass
+          />
+          
+          <TestimonialCard
+            name="Jamie R."
+            text="Finding a therapist through MindEase was so easy. The matching process was spot-on, and I've been seeing my therapist for 6 months now with great progress."
+            glass
+          />
+          
+          <TestimonialCard
+            name="Morgan L."
+            text="The resources section has taught me so much about managing my anxiety. The guided meditations have become part of my daily routine."
+            glass
+          />
+        </div>
+      </Section>
+      
+      {/* CTA Section */}
+      <Section className="bg-primary text-white">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold mb-6">Ready to Start Your Mental Wellness Journey?</h2>
+          <p className="text-xl mb-8 max-w-2xl mx-auto">
+            Join thousands of users who have improved their mental health with MindEase's integrated approach.
+          </p>
+          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center">
+            <Button 
+              onClick={() => router.push('/signup')}
+              variant="glass"
+              size="xl"
+            >
+              Create Account
+            </Button>
+            <Button 
+              onClick={() => router.push('/chat')}
+              variant="outline"
+              size="xl"
+              className="border-white text-white hover:bg-white/20"
+            >
+              Try AI Chat Now
+            </Button>
+          </div>
+        </div>
+      </Section>
+      
+      <Footer />
+    </div>
+  );
+}

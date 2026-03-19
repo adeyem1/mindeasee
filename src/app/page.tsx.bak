@@ -1,0 +1,51 @@
+'use client';
+
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { FiArrowRight, FiMessageSquare, FiCalendar, FiBookOpen, FiUser } from 'react-icons/fi';
+import { HeroSection } from '@/components/hero-section';
+import { Section, SectionHeading } from '@/components/ui/section';
+import { FeatureCard } from '@/components/ui/feature-card';
+import { Header } from '@/components/header';
+import { Button } from '@/components/ui/button';
+import { Footer } from '@/components/footer';
+import { Step } from '@/components/ui/step';
+import { TestimonialCard } from '@/components/ui/testimonial-card';
+import { HeroSection } from '@/components/hero-section';
+import { Section, SectionHeading } from '@/components/ui/section';
+import { FeatureCard } from '@/components/ui/feature-card';
+import { Header } from '@/components/header';
+import { Button } from '@/components/ui/button';
+import { Footer } from '@/components/footer';
+import { Step } from '@/components/ui/step';
+import { TestimonialCard } from '@/components/ui/testimonial-card';
+import { Card } from '@/components/ui/card';
+
+export default function Home() {
+  const router = useRouter();
+  
+  return (
+    <div className="min-h-screen flex flex-col">
+      <Header />
+      
+      {/* Hero Section */}
+      <HeroSection
+        title="Your Journey to Mental Wellness Begins Here"
+        description="MindEase offers AI-assisted mental health support, professionally-guided therapy, and personalized resources to help you thrive."
+        primaryButtonText="Get Started"
+        primaryButtonLink="/signup"
+        secondaryButtonText="Find a Therapist"
+        secondaryButtonLink="/therapists"
+        image={
+          <div className="relative h-64 md:h-96 w-full">
+            <Image
+              src="/images/hero-illustration.png"
+              alt="Mental wellness illustration"
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
+        }
+      />

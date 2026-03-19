@@ -1,0 +1,246 @@
+@import "tailwindcss";
+/* @plugin "tailwindcss-animate"; */
+
+/* Dark mode support */
+@custom-variant dark (&:is(.dark *));
+
+:root{
+  --font-outfit: "Outfit", sans-serif;
+}
+
+/* === THEME TOKENS === */
+@theme {
+  /* fonts */
+  --font-sans: var(--font-outfit), system-ui, sans-serif;
+
+  /* colors (all map to runtime CSS vars below) */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  /* brand extras (greens & citrine) */
+  --color-dark-green: #173217;
+  --color-fern-green: #397834;
+  --color-kelly-green: #5eb236;
+  --color-citrine: #efd523;
+
+  /* border radius */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* animations */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from { height: 0; }
+    to { height: var(--radix-accordion-content-height); }
+  }
+
+  @keyframes accordion-up {
+    from { height: var(--radix-accordion-content-height); }
+    to { height: 0; }
+  }
+
+  /* gradients */
+  --bg-gradient-radial: radial-gradient(var(--tw-gradient-stops));
+  --bg-gradient-conic: conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops));
+  
+  /* web3 animations */
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-blob: blob 7s infinite;
+  --animate-glow: glow 1.5s ease-in-out infinite alternate;
+  --animate-wave: wave 8s ease-in-out infinite;
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  
+  @keyframes blob {
+    0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+    25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+    50% { border-radius: 50% 60% 30% 60% / 40% 60% 70% 40%; }
+    75% { border-radius: 40% 60% 70% 30% / 60% 30% 40% 80%; }
+  }
+  
+  @keyframes glow {
+    from { box-shadow: 0 0 10px 0 rgba(var(--primary-rgb), 0.5); }
+    to { box-shadow: 0 0 20px 10px rgba(var(--accent-rgb), 0.7); }
+  }
+  
+  @keyframes wave {
+    0%, 100% { transform: translateX(0) translateY(0); }
+    25% { transform: translateX(-10px) translateY(10px); }
+    50% { transform: translateX(0) translateY(0); }
+    75% { transform: translateX(10px) translateY(-10px); }
+  }
+}
+
+/* === LIGHT MODE === */
+:root {
+  --radius: 0.625rem;
+
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+
+  --primary: #397834;
+  --primary-rgb: 57, 120, 52;
+  --primary-foreground: oklch(0.985 0 0);
+
+  --secondary: #5eb236;
+  --secondary-rgb: 94, 178, 54;
+  --secondary-foreground: oklch(0.205 0 0);
+
+  --muted: oklch(97.363% 0.06367 114.241);
+  --muted-foreground: oklch(0.556 0 0);
+
+  --accent: #efd523;
+  --accent-rgb: 239, 213, 35;
+  --accent-foreground: oklch(0.205 0 0);
+
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+}
+
+/* === DARK MODE === */
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+
+  --primary: #397834; /* same fern green base */
+  --primary-foreground: oklch(0.205 0 0);
+
+  --secondary: #5eb236;
+  --secondary-foreground: oklch(0.985 0 0);
+
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+
+  --accent: #efd523;
+  --accent-foreground: oklch(0.985 0 0);
+
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.985 0 0);
+
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+}
+
+button{
+  cursor: pointer
+}
+/* === BASE LAYER === */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* === WEB3 STYLES === */
+.glass-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-morphism {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(23, 50, 23, 0.15);
+}
+
+.dark .glass-morphism {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(15, 24, 15, 0.25);
+}
+
+.blob-animate {
+  animation: var(--animate-blob);
+}
+
+.float-animate {
+  animation: var(--animate-float);
+}
+
+.glow-animate {
+  animation: var(--animate-glow);
+}
+
+.pulse-animate {
+  animation: var(--animate-pulse-slow);
+}
+
+.wave-animate {
+  animation: var(--animate-wave);
+}
+
+/* Text shadow utility */
+.text-shadow-sm {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.text-shadow-md {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
